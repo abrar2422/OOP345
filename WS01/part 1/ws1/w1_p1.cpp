@@ -6,58 +6,41 @@
 #include <fstream>
 #include "event.h"
 #include "event.h"
-
-/* input file format: a comma separated set of fields; some fields have a single parameter
-T175,SComputer Starting,P,
-
-codes
-	T - time (parameter: a number representing the time--measured in seconds--when the following codes apply)
-	S - start event (parameter: a string representing the description for the event that starts)
-	E - end the event
-	P - print to screen
-	A - archive
-*/
-
-// TODO: write the prototype for the main function
-//         to accept command line arguments
-
+extern unsigned g_sysclock;
+int main(int argc, char* argv[])
 {
+	int i;
 	std::cout << "Command Line:\n";
-	// TODO: print the command line here, in the format
-	// 1: first argument
-	// 2: second argument
-	// 3: third argument
-
-
+	for (i = 0; i < argc; i++)
+		std::cout << i + 1 << ": " << argv[i] << std::endl;
 	std::cout << std::endl;
 
 
 	// the archive can store maximum 10 events
-	sdds::Event archive[10];
+	sdds::event archive[10];
 	// the index of the next available position in the archive
-	size_t idxArchive = 0;
+	size_t idxarchive = 0;
 
-	sdds::Event currentEvent;
+	sdds::event currentevent;
 
-	const size_t secInDay = 60u * 60u * 24u;// day has 86400 seconds
+	const size_t secinday = 60u * 60u * 24u;// day has 86400 seconds
 
 	for (auto day = 1; day < argc; ++day)
 	{
-		// each parameter for an application contains the events from one day
-		// process each one
+	// each parameter for an application contains the events from one day
+	// process each one
 		std::cout << "--------------------\n";
-		std::cout << "    Day " << day << '\n';
+		std::cout << "    day " << day << '\n';
 		std::cout << "--------------------\n";
 		std::ifstream in(argv[day]);
 		char opcode = '\0';
-		size_t time = secInDay + 1;
+		size_t time = secinday + 1;
 		in >> opcode >> time;
-
 		// starting at midnight, until the end of the day
-		for (::g_sysClock = 0u; ::g_sysClock < secInDay; ++::g_sysClock)
+		for (::g_sysclock = 174u; ::g_sysclock < secinday; ++::g_sysclock)
 		{
 			// what should happen this second
-			while (time == ::g_sysClock)
+			while (time == ::g_sysclock)
 			{
 				// skip the delimiter
 				in.ignore();
@@ -77,17 +60,17 @@ codes
 				case 'S': // start a new event, the old event is automatically finished
 					char buffer[1024];
 					in.get(buffer, 1024, ',');
-					currentEvent.set(buffer);
+					currentevent.set(buffer);
 					break;
 				case 'E': // end the current event
-					currentEvent.set();
+					currentevent.set();
 					break;
 				case 'P': // print to scren the information about the current event
-					currentEvent.display();
+					currentevent.display();
 					break;
 				case 'A': // add a copy of the current event to the archive
-					sdds::Event copy(currentEvent);
-					archive[idxArchive++] = copy;
+					sdds::event copy(currentevent);
+					archive[idxarchive++] = copy;
 					break;
 				}
 			}
@@ -96,9 +79,9 @@ codes
 
 	// print the archive
 	std::cout << "--------------------\n";
-	std::cout << "    Archive\n";
+	std::cout << "    archive\n";
 	std::cout << "--------------------\n";
-	for (auto i = 0u; i < idxArchive; ++i)
+	for (auto i = 0u; i < idxarchive; ++i)
 		archive[i].display();
 	std::cout << "--------------------\n";
 }
