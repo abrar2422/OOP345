@@ -6,11 +6,12 @@ unsigned g_sysclock;
 namespace sdds {
 	static int counter =1;
 
-	event::event() { setEmpty(); }
-	bool event::isEmpty()const { return m_description[0] == 0; };
+	event::event() {}
+	event::~event() { delete[] m_description; }
+	bool event::isEmpty()const { return m_description == nullptr; };
 	void event::setEmpty() {
 		m_startTime = 0;
-		m_description[0] = 0;
+		m_description = nullptr;
 	}
 	void event::display() const{
 		unsigned int hrs = m_startTime / 3600;
@@ -37,9 +38,11 @@ namespace sdds {
 		}
 		counter++;
 	}
-	void event::set(char* addr) {
-		if (addr != nullptr && addr[0] != 0) {
-			strcpy(m_description, addr);
+	void event::set(const char* desc) {
+		if (desc != nullptr && desc[0] != 0) {
+			int size = strlen(desc);
+			m_description = new char[size +1];
+			strcpy(m_description, desc);
 			m_startTime = g_sysclock;
 		}
 		else {
