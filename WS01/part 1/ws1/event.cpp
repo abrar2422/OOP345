@@ -6,7 +6,7 @@ unsigned g_sysclock;
 namespace sdds {
 	static int counter =1;
 
-	event::event() : m_description{0}, m_startTime{ 0 } {}
+	event::event() { setEmpty(); }
 	bool event::isEmpty()const { return m_description[0] == 0; };
 	void event::setEmpty() {
 		m_startTime = 0;
@@ -16,13 +16,13 @@ namespace sdds {
 		unsigned int hrs = m_startTime / 3600;
 		unsigned int mins = (m_startTime % 3600)/60;
 		unsigned int secs = m_startTime % 60;
-
+		
+		std::cout.fill(' ');
+		std::cout.width(2);
+		std::cout << counter << ". ";
 		if(isEmpty()){
-		/*	std::cout.width(3);*/
-			std::cout.fill(' ');
-			std::cout << counter << ". " << " | No Event |" << std::endl;
+			std::cout  << "| No Event |" << std::endl;
 		}else{
-			std::cout << counter << ". " <<
 			std::cout.fill('0');
 			std::cout.width(2);
 			std::cout << hrs << ':';
@@ -32,9 +32,8 @@ namespace sdds {
 			std::cout.fill('0');
 			std::cout.width(2);
 			std::cout << secs;
-			std::cout << " -> ";
+			std::cout << " => ";
 			std::cout << m_description << std::endl;
-		/*	std::cout << counter << hrs << ":" << mins << ":" << secs << "=>" << m_description;*/
 		}
 		counter++;
 	}

@@ -7,10 +7,27 @@
 #include "event.h"
 #include "event.h"
 extern unsigned g_sysclock;
+/* input file format: a comma separated set of fields; some fields have a single parameter
+T175,SComputer Starting,P,
+codes
+	T - time (parameter: a number representing the time--measured in seconds--when the following codes apply)
+	S - start event (parameter: a string representing the description for the event that starts)
+	E - end the event
+	P - print to screen
+	A - archive
+*/
+
+// TODO: write the prototype for the main function
+//         to accept command line arguments
 int main(int argc, char* argv[])
 {
 	int i;
 	std::cout << "Command Line:\n";
+	// TODO: print the command line here, in the format
+	// 1: first argument
+	// 2: second argument
+	// 3: third argument
+
 	for (i = 0; i < argc; i++)
 		std::cout << i + 1 << ": " << argv[i] << std::endl;
 	std::cout << std::endl;
