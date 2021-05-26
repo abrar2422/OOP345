@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{59a99a24-851a-4a31-ad69-4a817a3cee9d}</ProjectGuid>
-    <RootNamespace>ws1</RootNamespace>
+    <ProjectGuid>{18bf90ba-a463-482b-b16b-89463eedc13a}</ProjectGuid>
+    <RootNamespace>w1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,11 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="event.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="event.cpp" />
     <ClCompile Include="w1_p1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="event.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
