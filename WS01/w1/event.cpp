@@ -12,15 +12,15 @@ namespace sdds {
 		m_description = nullptr;
 	}
 	event::event(const event& src) {
-		*this = src;
-		m_starttime = src.m_starttime;
+		/**this = src;*/
+		m_startTime = src.m_startTime;
 		if (src.m_description != nullptr) {
 			delete[] m_description;
 			m_description = new char[strlen(src.m_description) +1];
 			strcpy(m_description, src.m_description);
 		}
 		else {
-			setempty();
+			setEmpty();
 		}
 		
 	}
