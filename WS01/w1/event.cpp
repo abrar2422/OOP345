@@ -7,7 +7,38 @@ namespace sdds {
 	static int counter =1;
 
 	event::event() {}
-	event::~event() { delete[] m_description; }
+	event::~event() { 
+		delete[] m_description; 
+		m_description = nullptr;
+	}
+	event::event(const event& src) {
+		*this = src;
+		m_starttime = src.m_starttime;
+		if (src.m_description != nullptr) {
+			delete[] m_description;
+			m_description = new char[strlen(src.m_description) +1];
+			strcpy(m_description, src.m_description);
+		}
+		else {
+			setempty();
+		}
+		
+	}
+	event& event::operator=(const event& src) {
+		if (this != &src){
+			m_startTime = src.m_startTime;
+			delete[] m_description;
+			if (src.m_description != nullptr) {
+				delete[] m_description;
+				m_description = new char[strlen(src.m_description) + 1];
+				strcpy(m_description, src.m_description);
+			}
+			else {
+				setEmpty();
+			}
+		}
+		return *this;
+	}
 	bool event::isEmpty()const { return m_description == nullptr; };
 	void event::setEmpty() {
 		m_startTime = 0;

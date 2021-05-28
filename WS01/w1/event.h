@@ -7,6 +7,8 @@ namespace sdds {
 	public:
 		event();
 		~event();
+		event(const event& src);
+		event& operator=(const event& src);
 		void display()const;
 		void set(const char* desc=nullptr);
 		void setEmpty();
