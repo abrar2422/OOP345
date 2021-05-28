@@ -4,8 +4,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "Event.h"
-#include "Event.h"
+#include "event.h"
+#include "event.h"
 extern unsigned g_sysClock;
 /* input file format: a comma separated set of fields; some fields have a single parameter
 T175,SComputer Starting,P,
