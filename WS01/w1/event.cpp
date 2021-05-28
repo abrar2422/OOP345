@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
-#include "Event.h"
+#include "event.h"
 unsigned g_sysClock;
 namespace sdds {
 	static int counter =1;
