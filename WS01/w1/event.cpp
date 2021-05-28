@@ -1,17 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
-#include "event.h"
-unsigned g_sysclock;
+#include "Event.h"
+unsigned g_sysClock;
 namespace sdds {
 	static int counter =1;
 
-	event::event() {}
-	event::~event() { 
+	Event::Event() {}
+	Event::~Event() { 
 		delete[] m_description; 
 		m_description = nullptr;
 	}
-	event::event(const event& src) {
+	Event::Event(const Event& src) {
 		/**this = src;*/
 		m_startTime = src.m_startTime;
 		if (src.m_description != nullptr) {
@@ -24,7 +24,7 @@ namespace sdds {
 		}
 		
 	}
-	event& event::operator=(const event& src) {
+	Event& Event::operator=(const Event& src) {
 		if (this != &src){
 			m_startTime = src.m_startTime;
 			delete[] m_description;
@@ -39,12 +39,12 @@ namespace sdds {
 		}
 		return *this;
 	}
-	bool event::isEmpty()const { return m_description == nullptr; };
-	void event::setEmpty() {
+	bool Event::isEmpty()const { return m_description == nullptr; };
+	void Event::setEmpty() {
 		m_startTime = 0;
 		m_description = nullptr;
 	}
-	void event::display() const{
+	void Event::display() const{
 		unsigned int hrs = m_startTime / 3600;
 		unsigned int mins = (m_startTime % 3600)/60;
 		unsigned int secs = m_startTime % 60;
@@ -69,15 +69,15 @@ namespace sdds {
 		}
 		counter++;
 	}
-	void event::set(const char* desc) {
+	void Event::set(const char* desc) {
 		if (desc != nullptr && desc[0] != 0) {
 			int size = strlen(desc);
 			m_description = new char[size +1];
 			strcpy(m_description, desc);
-			m_startTime = g_sysclock;
+			m_startTime = g_sysClock;
 		}
 		else {
-			event::setEmpty();
+			Event::setEmpty();
 		}
 	}
 

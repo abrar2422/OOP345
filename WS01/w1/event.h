@@ -1,18 +1,18 @@
-#ifndef _SDDS_EVENT_H
-#define _SDDS_EVENT_H
+#ifndef _SDDS_Event_H
+#define _SDDS_Event_H
 namespace sdds {
-	class event {
+	class Event {
 		char* m_description{nullptr};
 		unsigned int m_startTime{0};
 	public:
-		event();
-		~event();
-		event(const event& src);
-		event& operator=(const event& src);
+		Event();
+		~Event();
+		Event(const Event& src);
+		Event& operator=(const Event& src);
 		void display()const;
 		void set(const char* desc=nullptr);
 		void setEmpty();
 		bool isEmpty()const;
 	};
 }
-#endif // !_SDDS_EVENT_H
+#endif // !_SDDS_Event_H
