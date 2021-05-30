@@ -1,0 +1,21 @@
+The difference between internal and external linkage:
+The definition of external linkage is when a identifier is "connected across different scopes within the same module".
+A header file and implementation file makes up a module, of which the pre-processor creats a translation unit. Internal linkage
+refers to everything declared in that translation unit.
+On the other hand external linkage refers to identifiers connected across different scopes in different modules. which
+essentially means that specific identifier is accessible through the whole program, it doesn't matter which translattion 
+unit it was declared in.
+In the current workshop external linkage was used for g_sysClock. It was declared in Event module and used in the main program
+called w1_p2.cpp, making it externally linked, also known as global variable.
+
+static variable lasts the entire lifetime of the program. 
+	void func(){int i; i++;}
+when the function func gets called from main function the variable i is declared, and then gets incremented by 1 and dies right after.
+when the function gets called agian it does the same thing. So essentially i keeps getting incremented by 1 but then dies. But if i was declared
+as a static variable, it woulnd't loose is value after the function dies. Meaning when the function is called first time i becomes 1 and then second time
+i becomes 2 and so on. In the current workshop static variable was used to declare the counter for the events. to keep track of how many events there were in total.
+That way even when the function display() goes out of scope the counter variabl retains its value.
+
+Upgrading the event class was a good review of dynamic memory allocation from oop244. first time upgrading the class gave me bunch of erros and then
+quickly realized that whenever there is DMA, Copy constructor and Overloaded assignment operator is vital to the program.
+After impletementing those two functions my program ran without any erros.

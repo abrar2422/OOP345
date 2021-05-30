@@ -1,10 +1,17 @@
+/*
+Name: Abrar Haque
+Email: ahaque10@myseneca.ca
+Student ID: 107465189
+Date: May 30, 2021
+I have done all the coding myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
 #include "event.h"
 unsigned g_sysClock;
 namespace sdds {
-	static int counter =1;
+
 
 	Event::Event() {}
 	Event::~Event() { 
@@ -45,6 +52,7 @@ namespace sdds {
 		m_description = nullptr;
 	}
 	void Event::display() const{
+		static int counter = 1;
 		unsigned int hrs = m_startTime / 3600;
 		unsigned int mins = (m_startTime % 3600)/60;
 		unsigned int secs = m_startTime % 60;

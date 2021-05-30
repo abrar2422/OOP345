@@ -1,3 +1,10 @@
+/*
+Name: Abrar Haque
+Email: ahaque10@myseneca.ca
+Student ID: 107465189
+Date: May 30, 2021
+I have done all the coding myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
 // Workshop 1 - Linkage, Storage Duration, Namespaces, and OS Interface
 // Cornel - 2020/01/08
 // Chris - 2021/01/14
