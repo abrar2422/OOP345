@@ -20,8 +20,7 @@ namespace sdds {
 		/**this = src;*/
 		m_startTime = src.m_startTime;
 		if (src.m_description != nullptr) {
-			delete[] m_description;
-			m_description = new char[strlen(src.m_description) +1];
+			m_description = new char[strlen(src.m_description)+1];
 			strcpy(m_description, src.m_description);
 		}
 		else {
@@ -32,10 +31,9 @@ namespace sdds {
 	Event& Event::operator=(const Event& src) {
 		if (this != &src){
 			m_startTime = src.m_startTime;
-			delete[] m_description;
 			if (src.m_description != nullptr) {
 				delete[] m_description;
-				m_description = new char[strlen(src.m_description) + 1];
+				m_description = new char[strlen(src.m_description)+1];
 				strcpy(m_description, src.m_description);
 			}
 			else {
@@ -78,7 +76,7 @@ namespace sdds {
 	void Event::set(const char* desc) {
 		if (desc != nullptr && desc[0] != 0) {
 			int size = strlen(desc);
-			m_description = new char[size];
+			m_description = new char[size+1];
 			strcpy(m_description, desc);
 			m_startTime = g_sysClock;
 		}

@@ -40,7 +40,7 @@ for (auto day = 1; day < argc; ++day)
 	in >> opcode >> time;
 
 	// starting at midnight, until the end of the day
-	for (::g_sysClock = 0u; ::g_sysClock < secInDay; ++::g_sysClock)
+	for (::g_sysClock = 174u; ::g_sysClock < secInDay; ++::g_sysClock)
 	{
 		// what should happen this second
 		while (time == ::g_sysClock)
