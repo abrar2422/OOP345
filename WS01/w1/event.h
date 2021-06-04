@@ -7,10 +7,13 @@ I have done all the coding myself and only copied the code that my professor pro
 */
 #ifndef _SDDS_Event_H
 #define _SDDS_Event_H
+extern unsigned int g_sysClock;
 namespace sdds {
 	class Event {
 		char* m_description{nullptr};
 		unsigned int m_startTime{0};
+		void setEmpty();
+		bool isEmpty()const;
 	public:
 		Event();
 		~Event();
@@ -18,8 +21,8 @@ namespace sdds {
 		Event& operator=(const Event& src);
 		void display()const;
 		void set(const char* desc=nullptr);
-		void setEmpty();
-		bool isEmpty()const;
+		
+		
 	};
 }
 #endif // !_SDDS_Event_H

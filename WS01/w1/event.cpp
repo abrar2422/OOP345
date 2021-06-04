@@ -9,10 +9,8 @@ I have done all the coding myself and only copied the code that my professor pro
 #include <iostream>
 #include <cstring>
 #include "event.h"
-unsigned g_sysClock;
+unsigned int g_sysClock = 0;
 namespace sdds {
-
-
 	Event::Event() {}
 	Event::~Event() { 
 		delete[] m_description; 
