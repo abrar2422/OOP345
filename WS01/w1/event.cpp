@@ -78,7 +78,7 @@ namespace sdds {
 	void Event::set(const char* desc) {
 		if (desc != nullptr && desc[0] != 0) {
 			int size = strlen(desc);
-			m_description = new char[size +1];
+			m_description = new char[size];
 			strcpy(m_description, desc);
 			m_startTime = g_sysClock;
 		}
