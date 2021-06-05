@@ -75,14 +75,12 @@ namespace sdds {
 		counter++;
 	}
 	void Event::set(const char* desc) {
+		setEmpty();
 		if (desc != nullptr && desc[0] != 0) {
 			int size = strlen(desc);
 			m_description = new char[size+1];
 			strcpy(m_description, desc);
 			m_startTime = g_sysClock;
-		}
-		else {
-			setEmpty();
 		}
 	}
 
