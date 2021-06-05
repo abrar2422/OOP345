@@ -45,6 +45,7 @@ namespace sdds {
 	bool Event::isEmpty()const { return m_description == nullptr; };
 	void Event::setEmpty() {
 		m_startTime = 0;
+		delete[] m_description;
 		m_description = nullptr;
 	}
 	void Event::display() const{
@@ -81,7 +82,7 @@ namespace sdds {
 			m_startTime = g_sysClock;
 		}
 		else {
-			Event::setEmpty();
+			setEmpty();
 		}
 	}
 
