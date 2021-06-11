@@ -3,26 +3,38 @@
 #include "Pair.h"
 namespace sdds {
 	template<typename V, typename K>
-	class PairSummable : pair<V,K>{
-		V m_initial_value;
-		size_t m_width = 0;
+	class PairSummable : Pair<V,K>{
+		static V m_initial_value;
+		static size_t m_width;
 	public:
 		PairSummable() {}
-		PairSummable(const K& key, const V& value = initial) {
-			Pair<int, std::string>(key, value);
-			k.size() != 0 && m_width = k.size();
+		static const V& get_initial_value() { return m_initial_value; }
+		PairSummable(const K& key, const V& value = initial): Pair<V,K>(key,value){
+			K.size() != 0 && m_width = K.size();
 		}
 		bool iscompatiblewith(const PairSummable<V,K>& b)const{
-			return m_key == b.m_key;
+			return this->key() == b.key();
 		}
-		PairSummable<V,K>& operator+=(cosnt PairSummable<V, K>& b) {
-			m_initial_value = b.m_initial_value;
+		PairSummable<V,K>& operator+=(const PairSummable<V, K>& b) {
+			PairSummable<V, K> temp(b.value() + this->value() , b.key());
+			return temp;
 		}
 		virtual void display(std::ostream& os)const {
 			os.width(m_width);
 			os.setf(ios::left);
-			display(os);
+			Pair<V,K>::Display(os);
+			os.unsetf(std::ios::left);
 		}
 	};
+
+	
+	template<>
+	PairSummable<std::string, std::string>& PairSummable<std::string, std::string>::operator+=(const PairSummable<std::string, std::string>& b) {
+		PairSummable<std::string,std::string> temp(b.value() + ", " + this->value(), b.key());
+		return temp;
+	}
+	template<> std::string PairSummable<std::string, std::string>::m_initial_value = 0;
+	template<typename V, typename K>
+	size_t PairSummable<V, K>::m_width = 0u;
 }
 #endif // !_SDDS_PAIRSUMMABLE_H
