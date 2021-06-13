@@ -4,6 +4,7 @@
 namespace sdds {
 	template<typename V, typename K>
 	class Pair {
+	public:
 		K m_key;
 		V m_value;
 	public:

@@ -4,6 +4,7 @@
 namespace sdds {
 	template <size_t N, typename T >
 	class Set {
+	public:
 		size_t m_tracker = 0;
 		T m_collection[N];
 	public:

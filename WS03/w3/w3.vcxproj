@@ -25,7 +25,7 @@
     <ClInclude Include="SetSummable.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="w3_p1.cpp" />
+    <ClCompile Include="w3_p2.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

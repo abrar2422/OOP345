@@ -29,7 +29,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="w3_p1.cpp">
+    <ClCompile Include="w3_p2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
