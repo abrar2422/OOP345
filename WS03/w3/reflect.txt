@@ -1,0 +1,36 @@
+/*
+Name: Abrar Haque
+Email: ahaque10@myseneca.ca
+ID: 107465189
+Date: June 13, 2021
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+1> Summation of numbers are easy and self-explained. Just two numbers needs to be added. But when it comes to strings
+its different. Me as the programmer gets to define how to "add" strings. Thats why the specalization of operator+= was
+necessary. We needed a different format since a comma was needed to separate the two strings.
+	//generic Summation
+	this->m_value = this->value() + b.value();
+	//specialized summation for strings
+	this->m_value = m_value + ", " + b.m_value;
+2> From what I understood from the specification "The initial value varies with the type of the value in the value-key pair",
+and the way my program works, specialization of the initial value was necessary.
+	template<> int PairSummable<int, std::string>::m_initial_value = 0; //for int
+	template<> std::string PairSummable<std::string, std::string>::m_initial_value = ""; for strings
+3> PairSummable(const K& key, const V& value = initial) | value = initial
+	this prototype was necessary for this program to work, since the value varies with the type.
+	if this wans't templated prototype would look something like Pairsummable(const K& key, const V& value = 0 / value = "")
+	but since it is a template and we are unaware of what the type of the value is we give it a variable, and specialize
+	those variables to work with strings and numbers. 
+4> Class variables exists independently of the number of instances of the class and is accessible to all instances of that class.
+if we need to figure out how many instances of a class has been created and at that moment there was no instance of the class, a regular
+member variable is not defined and is unknown. thus it will give an error. but if we make a class variable by defining it as static
+and initialize it outside of the class, it will return "0 instances". and every time a class gets created we increment that variable. 
+All instances of the same class share the same variable, thus when we initialize the variable ouside the class, it will be available to 
+all instance because it has a global scope.
+
+The part 2 of this workshop was particularly hard and took me quite some time to crack the code.
+I had a hard time to figure out where to put the specialization. the syntax of the inheritance also took some time. After 2 hours of debugging
+I figured I didn't put "public" before inheriting //class Pairsummable : public Pair<N,T>{} withou the keyword public my pairsummable class
+didn't have access to the functionality of the base class, and it gave me a hard time.
+debugging the 'static' variables took time as well. I was able to solve all of these difficulties by going over notes(oop244 & oop345), as well 
+as trial-and-error. 
