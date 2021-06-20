@@ -73,17 +73,17 @@ int main(int argc, char** argv)
 		} while (file);
 		file.close();
 	}
-	//std::cout << "\nReservations\n--------------------------\n";
-	//for (auto i = 0u; i < cnt; ++i)
-	//{
-	//	std::cout << *ppReservations[i];
-	//}
-	//std::cout << "--------------------------\n\n";
+	std::cout << "\nReservations\n--------------------------\n";
+	for (auto i = 0u; i < cnt; ++i)
+	{
+		std::cout << *ppReservations[i];
+	}
+	std::cout << "--------------------------\n\n";
 
-	//// cleanup
-	//for (auto i = 0u; i < cnt; ++i)
-	//	delete ppReservations[i];
-	//delete[] ppReservations;
+	// cleanup
+	for (auto i = 0u; i < cnt; ++i)
+		delete ppReservations[i];
+	delete[] ppReservations;
 
 	return 0;
 }

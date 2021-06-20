@@ -21,11 +21,30 @@ namespace sdds {
 		_res_day = stoi(trim(extract(str_modifiable, ",")));
 		str_modifiable.erase(0, str_modifiable.find(',') + 1);
 		_res_hour = stoi(trim(extract(str_modifiable, ",")));
-
-		cout << _res_id << " " << _name_on_reservation << " " << _email << " " << _num_of_people << " " << _res_day << " " << _res_hour << endl;
 	}
 	//friend helpers
 	ostream& operator<<(ostream& os, const Reservation& res){
+		size_t hr = res._res_hour;
+		string serv_type[4]{ "Breakfast", "Lunch", "Dinner", "Drinks" };
+		int val{ 0 };
+		if (hr >=6 && hr <=9){
+			val = 0;
+		}
+		else if (hr >= 11 && hr <= 15) {
+			val = 1;
+		}
+		else if (hr >= 17 && hr <= 21) {
+			val = 2;
+		}
+		else{
+			val = 3;
+		}
+		os << "Reservation ";
+		os << setw(10) << setfill(' ') << right << res._res_id << ": ";
+		os << setw(20) << setfill(' ') << right << res._name_on_reservation << "  ";
+		os << setw(20) << setfill(' ') << left << res._email;
+		os << serv_type[val] << " on day " << res._res_day << " @ " << res._res_hour << ":00" << " for " << res._num_of_people
+			<< " people." << '\n';
 		return os;
 	}
 	//helpers
