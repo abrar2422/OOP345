@@ -42,9 +42,15 @@ namespace sdds {
 		os << "Reservation ";
 		os << setw(10) << setfill(' ') << right << res._res_id << ": ";
 		os << setw(20) << setfill(' ') << right << res._name_on_reservation << "  ";
-		os << setw(20) << setfill(' ') << left << res._email;
-		os << serv_type[val] << " on day " << res._res_day << " @ " << res._res_hour << ":00" << " for " << res._num_of_people
-			<< " people." << '\n';
+		os << setw(24) << setfill(' ') << left << res._email;
+		os << serv_type[val] << " on day " << res._res_day << " @ " << res._res_hour << ":00" << " for " << res._num_of_people;
+		if (res._num_of_people > 1)
+		{
+			os << " people." << '\n';
+		}
+		else {
+			os << " person." << '\n';
+		}
 		return os;
 	}
 	//helpers
