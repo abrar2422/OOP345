@@ -11,7 +11,6 @@ I have done all the coding by myself and only copied the code that my professor 
 namespace sdds {
 	template<typename V, typename K>
 	class PairSummable :public Pair<V,K>{
-	public:
 		static V m_initial_value;
 		static size_t m_width;
 	public:
@@ -39,10 +38,10 @@ namespace sdds {
 	template<>
  	PairSummable<std::string, std::string>& PairSummable<std::string, std::string>::operator+=(const PairSummable<std::string, std::string>& b) {
 		if (m_value.empty()){
-			this->m_value = b.m_value;
+			this->m_value = b.value();
 		}else
 		{
-			this->m_value = m_value + ", " + b.m_value;
+			this->m_value = m_value + ", " + b.value();
 		}
 
 		return *this;
