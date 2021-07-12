@@ -6,27 +6,27 @@ Date: July 11, 2021
 I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 */
 
-In this Workshop, I learned how to use a std::vector. The std::vector is a 
-type of container template class which is a part of the Standard Template 
-Library (more commonly known as an STL) of the C++ standard library. As the 
-name suggests, the containers defined in the STL are defined as templates 
-which allow code reuse. In general the, the purpose of an STL container is 
-to manage elements within the data structure that the specific container 
-represents. For example, manages elements allocated off the heap, all of 
-which are stored contiguously in memory. Since elements are allocated of the 
-heap, it can modify its size, either increasing or decreasing, whenever 
-required. Other STL containers also store their elements off the heap however,
-this specific container excels at insertion or removal of elements at the 
-end of the array of elements. Other STL containers have their own benefits 
-and drawbacks. 
+-1:
+When something dynamic is created the compiler doesn't see if it's a vector or an array or something else.
+If that thing is created dynamically and resides on the 'heap' it needs to deallocated or else it will be
+considered memory leak. Thus the dynamically allocated memory in vector needs to be deallocated
+-2:
+The error handling part of the 'loadData' function takes care of any error that might occur.
+the try block executes a set of command and if something goes wrong in that try block it comes to the 
+appropriate catch block to resolve the issue. In our case we simply print out the error message by
+doing that we simply discard that line of data and move on to the next one. In my 'createInstance' function
+I converted the incoming istream to string using getline. That way I am dealing with only one car record
+at any given time. using if else I check if it's a car or a racecar and create appropriate instance.
+The car constructor than takes over and throws exceptions if topspeed is anything but numbers and if the condition of
+the car is not recognized. which then catch blocks takes over and prints out error messages accordingly.
 
-On the other hand, a template parameter of type sdds::Vehicle * for the 
-containers (as used in the workshop) creates a container that manages 
-elements where each element is a polymorphic object. The static type (sdds::
-Vechicle), only specifies the hierarchy. The dynamic type of each element 
-is of any concrete type defined within the hierarchy. Since the amount of 
-objects to be created as well as the specific type of each are 
-determined at run-time, late-binding must occur as the specific concrete type 
-is only known at runtime. A polymorphic object facilitates late-binding by 
-calling the correct member function based on it's dynamic type not the 
-static type.
+Another solution could have been before sending the stream to 'createInstance()'
+	- Isolate each row using -> getline(stream, variable, '\n');
+	- Check for bad rows ((tag != r || R || C||c) OR topspeed != number) 
+	- discard the bad rows
+	- send only the good rows to createInstance of car or racecar;
+that way no validation will be required in the constructor of Car
+
+-3:
+In short Vehicle is not a concrete class, it's an abstract class.
+std::list<sdds::Vehicle> won't work since a list of abstract class can't be created.
