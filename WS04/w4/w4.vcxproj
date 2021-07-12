@@ -139,11 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConfirmationSender.cpp" />
     <ClCompile Include="Reservation.cpp" />
-    <ClCompile Include="w4_p1.cpp" />
+    <ClCompile Include="Restaurant.cpp" />
+    <ClCompile Include="w4_p2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConfirmationSender.h" />
     <ClInclude Include="Reservation.h" />
+    <ClInclude Include="Restaurant.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
