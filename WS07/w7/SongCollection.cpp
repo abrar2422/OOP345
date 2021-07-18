@@ -51,7 +51,7 @@ namespace sdds {
 		os << left << setw(15) << tSong._artist << " | ";
 		os << left << setw(20) << tSong._album << " | ";
 		os << right << setw(6) << tSong._release_year << " | ";
-		os << tSong._length << " |";
+		os << tSong._length << " | ";
 		os << tSong._price << " |" << endl;
 		return os;
 	}
