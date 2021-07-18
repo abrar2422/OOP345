@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SongCollection.cpp" />
-    <ClCompile Include="w7_p1.cpp" />
+    <ClCompile Include="w7_p2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SongCollection.h" />

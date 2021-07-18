@@ -1,13 +1,16 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <algorithm>
+#include <numeric>
+#include <functional>
 #include "SongCollection.h"
 using namespace std;
 namespace sdds {
 	SongCollection::SongCollection(string fileName) {
 		fstream file(fileName);
 		if (!file) {
-			std::cerr << "ERROR: Cannot open file [ " << fileName << " ].\n";
+			throw "ERROR: Cannot open file.\n";
 		}
 		file.clear();
 		file.seekg(std::ios::beg);
@@ -28,21 +31,63 @@ namespace sdds {
 
 			stringstream ss(lengthInSecs); //convert to stringstream
 			ss >> duration; //string to number
-			mins = duration / 60; //4
-			secs = duration % 60; //5
-			stringstream length_breakdown;
+			mins = duration / 60; 
+			secs = duration % 60; 
+			stringstream length_breakdown; 
 			length_breakdown << mins << ':' << setw(2) << setfill('0') << secs;
 			length_breakdown >> sg._length;
-
-
 			songs.push_back(sg);
 
 		} while (file);
 		songs.pop_back();
 	}
+	void SongCollection::sort(string sorter) {
+		if (sorter == "title") {
+			std::sort(songs.begin(), songs.end(), [](Song s1, Song s2) {
+				return s1._title < s2._title;
+			});
+		}
+		else if (sorter == "album") {
+			std::sort(songs.begin(), songs.end(), [](Song s1, Song s2) {
+				return s1._album < s2._album;
+			});
+		}
+		else if (sorter == "length") {
+			std::sort(songs.begin(), songs.end(), [](Song s1, Song s2) {
+				return s1._length < s2._length;
+			});
+		}
+	}
+	void SongCollection::cleanAlbum() {
+		for (auto& i : songs) {
+			if (i._album == "[None]") {
+				i._album = "";
+			}
+		}
+	}
+	bool SongCollection::inCollection(std::string name) const {
+		bool found = false;
+		for (auto& i : songs) {
+			if (name == i._artist) {
+				found = true;
+			}
+		}
+		return found;
+	}
+	std::list<Song> SongCollection::getSongsForArtist(std::string name)const {
+		list<Song> artist;
+		for (auto& i : songs) {
+			if (i._artist == name) {
+				artist.push_back(i);
+			}
+		}
+		return artist;
+	}
 	void SongCollection::display(std::ostream& os) const {
+		this->totalPlayTime = 0;
 		for (auto i = songs.begin(); i != songs.end(); i++) {
 			os << *i;
+			total += i._length;
 		}
 	}
 	std::ostream& operator<<(std::ostream& os, const Song& tSong) {

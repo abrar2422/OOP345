@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 namespace sdds {
 	struct Song {
 		std::string _artist = "";
@@ -11,11 +12,18 @@ namespace sdds {
 		std::string _price = "";
 		std::string _release_year = "";
 		std::string _length = "";
+		double m_price =0;
+
 	};
 	class SongCollection {
+		int totalPlayTime = 0;
 		std::vector<Song> songs;
 	public:
 		SongCollection(std::string);
+		void sort(std::string sorter);
+		void cleanAlbum();
+		bool inCollection(std::string name) const;
+		std::list<Song> getSongsForArtist(std::string name)const;
 		void display(std::ostream& os) const;
 	};
 	std::ostream& operator<<(std::ostream& os, const Song& tSong);
