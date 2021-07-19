@@ -1,0 +1,8 @@
+The benefits of utilising STL algorithms as opposed to implementing the functionality by myself are as follows:
+- faster development time since I don't need to create the algorithm myself from scratch
+- doesn't require planning and debugging logical error
+- The STL algorithms have been tested to be the most efficient piece of code. If I were to 
+  make a similar algorithm for my program, it won't be as efficient
+
+
+If I were to redisgn this program I would use error handling to prevent customer from passing in invalid string.
