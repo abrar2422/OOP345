@@ -1,9 +1,4 @@
-#include <fstream>
-#include <sstream>
-#include <iomanip>
-#include <algorithm>
-#include <numeric>
-#include <functional>
+
 #include "SongCollection.h"
 using namespace std;
 namespace sdds {
@@ -27,7 +22,11 @@ namespace sdds {
 			sg._album = trim(extract(st, 25));
 			sg._release_year = trim(extract(st, 5));
 			lengthInSecs = trim(extract(st, 5));
+			stringstream s(lengthInSecs);
+			s >> sg.len;
 			sg._price = trim(extract(st, 5));
+			stringstream p(sg._price);
+			p >> sg.m_price; 
 
 			stringstream ss(lengthInSecs); //convert to stringstream
 			ss >> duration; //string to number
@@ -83,12 +82,19 @@ namespace sdds {
 		}
 		return artist;
 	}
-	void SongCollection::display(std::ostream& os) const {
-		this->totalPlayTime = 0;
+	void SongCollection::display(std::ostream& os) {
+		totalPlayTime = 0;
 		for (auto i = songs.begin(); i != songs.end(); i++) {
-			os << *i;
-			total += i._length;
+			os << *i << '\n';
+			totalPlayTime += i->len;
 		}
+		os << std::setw(89) << std::setfill('-') << '\n' << std::setfill(' ');
+		int hour = totalPlayTime / 3600;
+		int minutes = totalPlayTime / 60;
+		minutes -= (hour * 60);
+		int ss = totalPlayTime % 60;
+		string time = "Total Listening Time: " + to_string(hour) + ":" + to_string(minutes) + ":" + to_string(ss);
+		os << "|" << right << setw(85) << setfill(' ') << time << " |" << endl;
 	}
 	std::ostream& operator<<(std::ostream& os, const Song& tSong) {
 		os << "| ";
@@ -97,7 +103,7 @@ namespace sdds {
 		os << left << setw(20) << tSong._album << " | ";
 		os << right << setw(6) << tSong._release_year << " | ";
 		os << tSong._length << " | ";
-		os << tSong._price << " |" << endl;
+		os << tSong._price << " |";
 		return os;
 	}
 	string extract(string& str, int size) {
